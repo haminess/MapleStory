@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{25ac50d8-7077-4942-b528-fb426bd7b977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. ScriptMgr">
+      <UniqueIdentifier>{519bfe54-78b0-4cbd-b98b-68f1ffe805a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts">
+      <UniqueIdentifier>{58463194-7e2d-4640-8261-8d840a299147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Player">
+      <UniqueIdentifier>{e4f97988-75db-4147-a56c-68c3b5986a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Environment">
+      <UniqueIdentifier>{545434eb-b372-4ef8-9899-401402da8394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Object">
+      <UniqueIdentifier>{d578904d-a1c7-42e0-8b24-0e0e09fcaa34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Level">
+      <UniqueIdentifier>{d559a1e7-d10f-4829-b2e0-3b49fc46ccb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill">
+      <UniqueIdentifier>{625f933e-0ca2-482a-b24d-5330875e24cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill\Skills">
+      <UniqueIdentifier>{2eb527de-8423-4e80-a59b-a20261205813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Module">
+      <UniqueIdentifier>{cb4f2677-8ca1-4a90-a35a-2ab3026e84a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. States">
+      <UniqueIdentifier>{9638d88c-92e0-4fa7-9895-05b27e790e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. States\Bellum">
+      <UniqueIdentifier>{83d49b80-91e7-4479-9e3e-51bc9ea68f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Class">
+      <UniqueIdentifier>{edf6e09c-8c62-424c-b12b-14866053f745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill\Skills\Wind">
+      <UniqueIdentifier>{7ca79ccb-2045-4063-b6e3-f1f5ad3e0756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill\Skills\Hero">
+      <UniqueIdentifier>{3ff5d0d1-c61d-4f78-8401-c87e7dbb49b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. States\Player">
+      <UniqueIdentifier>{016b547b-4d56-4c82-baf9-bc0b2f2bfc2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. States\Monster">
+      <UniqueIdentifier>{4b7e7bcb-d0e8-4ae9-b88e-4c4d928df428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid">
+      <UniqueIdentifier>{26601240-74ff-4ec2-8dc9-1e9c128945f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\NightmareButterfly">
+      <UniqueIdentifier>{164f39a7-c007-4448-8d4a-a77a63a9f3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Dragon">
+      <UniqueIdentifier>{54dbab16-d7e2-4dc0-ad62-605bc206da85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Skill">
+      <UniqueIdentifier>{79f67939-6bd0-41c5-b0fd-c4a1456e5506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Horn">
+      <UniqueIdentifier>{699e4066-defc-4ae2-bc9a-eda7b91ee1b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\LittleButterfly">
+      <UniqueIdentifier>{7a063de7-afa3-4737-a30f-426553c0d36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Skill\Prison">
+      <UniqueIdentifier>{644691fc-9150-4c8e-84a1-2d0c0526d552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Toadstool">
+      <UniqueIdentifier>{1e38f3bb-4dc3-4493-b6ba-31ab4c30078c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Lucid\Golem">
+      <UniqueIdentifier>{63c808d3-a662-4734-ab88-20b57f54e7dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill\Skills\Ren">
+      <UniqueIdentifier>{98d5ac7f-18ca-4262-a152-03586c9ff78c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scripts\Skill\Skills\Hero\State">
+      <UniqueIdentifier>{aed1b114-e242-48f7-9840-e120cb696a2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissileScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CScriptMgr.h">
+      <Filter>01. ScriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CMouseScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleSystemScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CLifeScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillScript.h">
+      <Filter>03. Scripts\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerScript.h">
+      <Filter>03. Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CLinePlatform.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineWall.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlatformScript.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlatformerScript.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CWallScript.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CStrikeSkill.h">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="CBowSkill.h">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="CArrowSkill.h">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="CWindWalkSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Wind</Filter>
+    </ClInclude>
+    <ClInclude Include="CDoubleJumpSkill.h">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="CRope.h">
+      <Filter>03. Scripts\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackScript.h">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CDamageSkinScript.h">
+      <Filter>03. Scripts\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CBellumAttackState.h">
+      <Filter>04. States\Bellum</Filter>
+    </ClInclude>
+    <ClInclude Include="CBellumIdleState.h">
+      <Filter>04. States\Bellum</Filter>
+    </ClInclude>
+    <ClInclude Include="CPortalScript.h">
+      <Filter>03. Scripts\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CBellumScript.h">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelScript.h">
+      <Filter>03. Scripts\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\CSkill.h">
+      <Filter>02. Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CMultiPlayerScript.h">
+      <Filter>03. Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillManager.h">
+      <Filter>03. Scripts\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSlashBlastSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpawnerScript.h">
+      <Filter>03. Scripts\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroWarLeapSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroRagingBlowSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CAttackState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CDieState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CHitState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CPatrolState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CTraceState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroFlashSlashSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroAuraBladeSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroComboAttackSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSwordOfBurningSoulSkill.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidScript.h">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectileScript.h">
+      <Filter>03. Scripts\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdleState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpawnState.h">
+      <Filter>04. States\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyScript.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyState_Attack.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyState_Die.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyState_Fly.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyState_Hit.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidNightmareButterflyState_Regen.h">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidToadstoolScript.h">
+      <Filter>03. Scripts\Lucid\Toadstool</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidPhase1Script.h">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidPhase2Script.h">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidDragonScript.h">
+      <Filter>03. Scripts\Lucid\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidGolemScript.h">
+      <Filter>03. Scripts\Lucid\Golem</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidDragonState_Attack.h">
+      <Filter>03. Scripts\Lucid\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidDragonState_Move.h">
+      <Filter>03. Scripts\Lucid\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidDragonSkill.h">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidFairyDustSkill.h">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidHornScript.h">
+      <Filter>03. Scripts\Lucid\Horn</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidLittleButterflyScript.h">
+      <Filter>03. Scripts\Lucid\LittleButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidLittleButterflyBombScript.h">
+      <Filter>03. Scripts\Lucid\LittleButterfly</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidExplosionPrisonSkill.h">
+      <Filter>03. Scripts\Lucid\Skill\Prison</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidPrisonState_Regen.h">
+      <Filter>03. Scripts\Lucid\Skill\Prison</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidPrisonState_Stay.h">
+      <Filter>03. Scripts\Lucid\Skill\Prison</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidPrisonState_Die.h">
+      <Filter>03. Scripts\Lucid\Skill\Prison</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidGolemState_Spawn.h">
+      <Filter>03. Scripts\Lucid\Golem</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidGolemState_Drop.h">
+      <Filter>03. Scripts\Lucid\Golem</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidLittleButterflySpawnScript.h">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CLucidFlowerExplosionScript.h">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerIdleState.h">
+      <Filter>03. Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerAttackState.h">
+      <Filter>03. Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSwordOfBurningSoulScript.h">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSOBSState_Regen.h">
+      <Filter>03. Scripts\Skill\Skills\Hero\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSOBSState_Idle.h">
+      <Filter>03. Scripts\Skill\Skills\Hero\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSOBSState_Attack.h">
+      <Filter>03. Scripts\Skill\Skills\Hero\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroSOBSState_Die.h">
+      <Filter>03. Scripts\Skill\Skills\Hero\State</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissileScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CScriptMgr.cpp">
+      <Filter>01. ScriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CMouseScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleSystemScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CLifeScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkillScript.cpp">
+      <Filter>03. Scripts\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerScript.cpp">
+      <Filter>03. Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CLinePlatform.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineWall.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatformScript.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlatformerScript.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CWallScript.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CStrikeSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="CBowSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="CArrowSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="CWindWalkSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Wind</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoubleJumpSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="CRope.cpp">
+      <Filter>03. Scripts\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackScript.cpp">
+      <Filter>03. Scripts\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="CDamageSkinScript.cpp">
+      <Filter>03. Scripts\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBellumAttackState.cpp">
+      <Filter>04. States\Bellum</Filter>
+    </ClCompile>
+    <ClCompile Include="CBellumIdleState.cpp">
+      <Filter>04. States\Bellum</Filter>
+    </ClCompile>
+    <ClCompile Include="CPortalScript.cpp">
+      <Filter>03. Scripts\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBellumScript.cpp">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelScript.cpp">
+      <Filter>03. Scripts\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\CSkill.cpp">
+      <Filter>02. Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CMultiPlayerScript.cpp">
+      <Filter>03. Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkillManager.cpp">
+      <Filter>03. Scripts\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroSlashBlastSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpawnerScript.cpp">
+      <Filter>03. Scripts\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroWarLeapSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroRagingBlowSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CAttackState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CDieState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CHitState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CPatrolState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkillState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CTraceState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroFlashSlashSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroAuraBladeSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroComboAttackSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroSwordOfBurningSoulSkill.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidScript.cpp">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectileScript.cpp">
+      <Filter>03. Scripts\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdleState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpawnState.cpp">
+      <Filter>04. States\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidNightmareButterflyScript.cpp">
+      <Filter>03. Scripts\Lucid\NightmareButterfly</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidToadstoolScript.cpp">
+      <Filter>03. Scripts\Lucid\Toadstool</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidPhase1Script.cpp">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidPhase2Script.cpp">
+      <Filter>03. Scripts\Lucid</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidDragonScript.cpp">
+      <Filter>03. Scripts\Lucid\Dragon</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidGolemScript.cpp">
+      <Filter>03. Scripts\Lucid\Golem</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidDragonSkill.cpp">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidFairyDustSkill.cpp">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidHornScript.cpp">
+      <Filter>03. Scripts\Lucid\Horn</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidLittleButterflyScript.cpp">
+      <Filter>03. Scripts\Lucid\LittleButterfly</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidLittleButterflyBombScript.cpp">
+      <Filter>03. Scripts\Lucid\LittleButterfly</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidExplosionPrisonSkill.cpp">
+      <Filter>03. Scripts\Lucid\Skill\Prison</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidLittleButterflySpawnScript.cpp">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CLucidFlowerExplosionScript.cpp">
+      <Filter>03. Scripts\Lucid\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerAttackState.cpp">
+      <Filter>03. Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroSwordOfBurningSoulScript.cpp">
+      <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

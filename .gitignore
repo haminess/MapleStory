@@ -4,38 +4,83 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o
-*.obj
+#*.o
+#*.obj
 
 # Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
+#*.gch
+#*.pch
 
 # Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+#*.so
+#*.dylib
+#*.dll
 
 # Fortran module files
-*.mod
-*.smod
+#*.mod
+#*.smod
 
 # Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+#*.lai
+#*.la
+#*.a
+
 
 # Executables
-*.exe
-*.out
-*.app
+#*.exe
+#*.out
+#*.app
 
-# debug information files
-*.dwo
+# Visual Studio 관련
+.vs/
+#*.suo
+#*.user
+#*.userosscache
+#*.sln.docstates
+
+# 빌드 결과물
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual C++ 캐시 파일
+#ipch/
+#*.aps
+#*.ncb
+#*.opendb
+#*.opensdf
+#*.sdf
+#*.cachefile
+#*.VC.db
+#*.VC.VC.opendb
+
+# 프로젝트 파일
+#*.vcxproj.filters
+#*.vcxproj.user
+
+# 중간 파일들
+#*.pdb
+#*.ilk
+#*.log
+#*.tlog
+#*.idb
+#*.iobj
+#*.ipdb
+#*.lastbuildstate
+
+# 리소스 파일 (선택적)
+#*.mp3
+#*.mp4
+#*.wav
+#*.fbx
+#*.png
+#*.jpg

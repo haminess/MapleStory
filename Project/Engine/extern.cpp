@@ -1,0 +1,78 @@
+#include "pch.h"
+#include "global.h"
+
+TransInfo g_Trans = {};
+
+extern GlobalData g_Data = {};
+
+extern const char* ASSET_TYPE_STRING[] =
+{
+	"MESH",
+	"MESHDATA",
+	"TEXTURE",
+	"SOUND",
+	"PREFAB",
+	"FLIPBOOK",
+	"SPRITE",
+	"MATERIAL",
+	"GRAPHIC_SHADER",
+	"COMPUTE_SHADER",
+	"MTILE"
+};
+
+extern const char* LAYER_INDEX_STRING[] =
+{
+	"BACKGROUND",
+	"BACKGROUND_1",
+	"BACKGROUND_2",
+	"BACKGROUND_3",
+	"BACKGROUND_4",
+	"ENVIRONMENT_BACK",
+	"PLATFORM",
+	"PLATFORM_1",
+	"PLATFORM_2",
+	"ENVIRONMENT",
+	"OBJECT",
+	"OBJECT_1",
+	"WALL",
+	"ENVIRONMENT_FRONT",
+	"MONSTER",
+	"MONSTER_1",
+	"MONSTER_OBJECT",
+	"MONSTER_OBJECT_1",
+	"DEFAULT",
+	"PLAYER",
+	"PLAYER_1",
+	"PLAYER_OBJECT",
+	"PLAYER_OBJECT_1",
+	"ITEM",
+	"EFFECT",
+	"FORGROUND",
+	"ETC",
+	"ETC_1",
+	"UI_WORLD",
+	"UI_SCREEN",
+	"UI_DEBUG",
+	"SYSTEM"
+};
+
+extern const char* COMPONENT_TYPE_STRING[] =
+{
+	"TRANSFORM",
+	"COLLIDER2D",
+	"COLLIDER3D",
+	"RIGIDBODY2D",
+	"FLIPBOOKPLAYER",
+	"ANIMATOR3D",
+	"CAMERA",
+	"LIGHT2D",
+	"LIGHT3D",
+	"STATEMACHINE",
+	"MESHRENDER",
+	"TILEMAP",
+	"PARTICLE_SYSTEM",
+	"SKYBOX",
+	"DECAL",
+	"LANDSCALE",
+	"MTILEMAP"
+};
