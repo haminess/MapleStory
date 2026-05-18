@@ -14,20 +14,25 @@
 #include "CLucidHornScript.h"
 
 #include <Engine/CRenderMgr.h>
+#include <Engine/CTaskMgr.h>
 
 CLucidScript::CLucidScript()
-	: CScript(SCRIPT_TYPE::LUCIDSCRIPT)
+	: CMonsterScript(SCRIPT_TYPE::LUCIDSCRIPT)
+	, m_TimerID(0)
 {
 }
 
 CLucidScript::CLucidScript(const CLucidScript& _Other)
-	: CScript(_Other)
+	: CMonsterScript(_Other)
+	, m_TimerID(0)
 {
 }
 
 
 CLucidScript::~CLucidScript()
 {
+	if(m_TimerID != 0)
+		CTaskMgr::GetInst()->StopTimer(m_TimerID);
 }
 
 void CLucidScript::SpawnNightmareButterfly()
@@ -164,6 +169,9 @@ void CLucidScript::Begin()
 	pObj->AddComponent(m_LittleButterfly);
 
 	CreateObject(pObj, (int)LAYER_INDEX::DEFAULT, false);
+
+	// 5초마다 패턴
+	UINT timer_id = CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CLucidScript::CastNextPattern, 5.f, true);
 }
 
 void CLucidScript::Tick()
@@ -173,16 +181,28 @@ void CLucidScript::Tick()
 		FlipbookPlayer()->Play(0, 10.f, true);
 	}
 
-	// 5초마다 패턴
-	m_PatternDelay += DT;
-	if (m_PatternDelay > 5.f)
+	//// 5초마다 패턴
+	//m_PatternDelay += DT;
+	//if (m_PatternDelay > 5.f)
+	//{
+	//	int rand = RandomRange(0, m_vecSkill.size() - 1);
+	//	if (m_vecSkill[rand]->IsCooltimeFinished())
+	//	{
+	//		m_vecSkill[rand]->Use();
+	//		m_PatternDelay -= 5.f;
+	//	}
+	//}
+}
+
+
+void CLucidScript::CastNextPattern()
+{
+	int rand = RandomRange(0, m_vecSkill.size() - 1);
+	if (m_vecSkill[rand]->IsCooltimeFinished())
 	{
-		int rand = RandomRange(0, m_vecSkill.size() - 1);
-		if (m_vecSkill[rand]->IsCooltimeFinished())
-		{
-			m_vecSkill[rand]->Use();
-			m_PatternDelay -= 5.f;
-		}
+		m_vecSkill[rand]->Use();
+		m_PatternDelay -= 5.f;
 	}
 }
+
 

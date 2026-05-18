@@ -8,7 +8,6 @@ class CLifeScript :
 private:
     int m_HP;      // 현재 체력
     int m_Power;    // 공격력
-
     int m_MaxHP;
 
 public:

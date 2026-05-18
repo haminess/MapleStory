@@ -1,12 +1,14 @@
 #pragma once
 #include <Engine\CScript.h>
+#include "CMonsterScript.h"
 
 class CSkillScript;
 class CLucidLittleButterflyScript;
 class CLucidLittleButterflySpawnScript;
 class CLucidHornScript;
+class CMonsterScript;
 class CLucidScript :
-    public CScript
+    public CMonsterScript
 {
 private:
     // Æä¾î¸®´õ½ºÆ®, µå·¡°ï, Å«³ªºñ, ÅÚ·¹Æ÷Æ®, °¨¿Á, ³­ºñ¶¼, °ñ·½, µ¶¹ö¼¸
@@ -22,9 +24,12 @@ private:
     // pattern
     queue<CSkillScript*> m_SkillQueue;
     float m_PatternDelay;
+    UINT m_TimerID;
 
     // little butterfly & horn
     CLucidLittleButterflySpawnScript* m_LittleButterfly;
+
+    
 
 
 public:
@@ -34,6 +39,8 @@ public:
     void SpawnToadstool();
 
     void SpawnLittleButterfly();
+
+    void CastNextPattern();
 
 public:
     virtual void Init() override;
