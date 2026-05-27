@@ -58,7 +58,7 @@ void CRenderMgr::PlayAnimEff(Ptr<CFlipbook> _Flip, CGameObject* _Parent, Vector3
 			(*iter)->Transform()->SetRelativeRotation(_Rot);
 			(*iter)->Transform()->UseIndependentScale(true);
 			(*iter)->FlipbookPlayer()->PlayOnce(_Flip, 10);
-			
+
 			m_EffObjList.push_front(*iter);
 			m_EffObjList.erase(iter);
 			return;
@@ -115,7 +115,7 @@ void CRenderMgr::Init()
 
 void CRenderMgr::Tick()
 {
-	if (CLevelMgr::GetInst()->GetCurrentLevel() == nullptr || 
+	if (CLevelMgr::GetInst()->GetCurrentLevel() == nullptr ||
 		CLevelMgr::GetInst()->GetCurrentLevel()->GetState() != LEVEL_STATE::PLAY)
 		return;
 
@@ -157,7 +157,7 @@ void CRenderMgr::Render()
 	Render_Text();
 
 	// DebugRender
-	Render_Debug();
+	//Render_Debug();
 
 
 	// Fade 처리
@@ -174,7 +174,7 @@ void CRenderMgr::Render()
 			m_Fade = false;
 	}
 
-	if(m_FadeRatio > 0.f)
+	if (m_FadeRatio > 0.f)
 		m_FadeObj->Render();
 }
 
@@ -251,7 +251,7 @@ void CRenderMgr::Render_Text()
 
 	for (; iter != m_TextList.end(); )
 	{
-		CFontMgr::GetInst()->DrawFont(iter->Text.c_str(), iter->Position.x, iter->Position.y, iter->FontSize, iter->Color);
+		CFontMgr::GetInst()->DrawFont(iter->Text.c_str(), iter->Position.x, iter->Position.y, iter->FontSize, iter->Color, iter->Align, iter->Font);
 
 		iter->Time -= DT;
 		if (iter->Time <= 0)
@@ -281,11 +281,10 @@ void CRenderMgr::Render_Play()
 			m_vecCam[i] = nullptr;
 
 		m_RenderCam = m_vecCam[i];
-
-		break;
 	}
 
-
+	if(m_vecCam.size() > 0)
+		m_RenderCam = m_vecCam[0];
 }
 
 void CRenderMgr::Render_Editor()
@@ -338,6 +337,12 @@ void CRenderMgr::Render_Editor()
 
 void CRenderMgr::Render_Debug()
 {
+	if (m_RenderCam)
+	{
+		g_Trans.matView = m_RenderCam->m_matView;
+		g_Trans.matProj = m_RenderCam->m_matProj;
+	}
+
 	list<tDebugShapeInfo>::iterator iter = m_DbgList.begin();
 
 	for (; iter != m_DbgList.end(); )
@@ -412,6 +417,7 @@ void CRenderMgr::Render_Debug()
 
 void CRenderMgr::RegisterCamera(CCamera* _Cam, UINT _Priority)
 {
+	// 카메라 제거
 	if (-1 == _Priority)
 	{
 		vector<CCamera*>::iterator iter = m_vecCam.begin();

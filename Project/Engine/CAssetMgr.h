@@ -159,6 +159,8 @@ inline ASSET_TYPE GetAssetType()
 		return ASSET_TYPE::TEXTURE;
 	if constexpr (IsTypeSame<T, MTile>)
 		return ASSET_TYPE::MTILE;
+	if constexpr (IsTypeSame<T, CFont>)
+		return ASSET_TYPE::FONT;
 
 
 	return ASSET_TYPE::END;

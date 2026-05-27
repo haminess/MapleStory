@@ -5,6 +5,7 @@ CBellumAttackState
 CBellumIdleState
 CBellumScript
 CBowSkill
+CButtonUI
 CCameraScript
 CDamageSkinScript
 CDieState
@@ -71,9 +72,12 @@ CRope
 CSkillManager
 CSkillScript
 CSkillState
+CSliderUI
 CSpawnerScript
 CSpawnState
 CStrikeSkill
+CTextUI
 CTraceState
+CUIScript
 CWallScript
 CWindWalkSkill

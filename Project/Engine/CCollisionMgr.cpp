@@ -105,6 +105,10 @@ void CCollisionMgr::CollisionBtwCollider2D(CCollider2D* _LeftCol, CCollider2D* _
 	{
 		int a = 0;
 	}
+	if (_RightCol->GetOwner()->GetName() == L"RagingBlow" || _LeftCol->GetOwner()->GetName() == L"RagingBlow")
+	{
+		int a = 0;
+	}
 
 	// 현재 겹쳐있다.
 	if (IsCollision(_LeftCol, _RightCol))

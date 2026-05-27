@@ -385,13 +385,10 @@ void CAssetMgr::CreateEngineGraphicShader()
 	pShader->CreateVertexShader(L"Shader\\particle.fx", "VS_Particle");
 	pShader->CreateGeometryShader(L"Shader\\particle.fx", "GS_Particle");
 	pShader->CreatePixelShader(L"Shader\\particle.fx", "PS_Particle");
-
 	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
-
 	pShader->SetRSState(RS_TYPE::CULL_NONE);
 	pShader->SetBSState(BS_TYPE::ALPHABLEND);
 	pShader->SetDSState(DS_TYPE::NO_WRITE);
-
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_PARTICLE);
 	AddAsset(L"ParticleShader", pShader);
 
@@ -400,14 +397,12 @@ void CAssetMgr::CreateEngineGraphicShader()
 	// ==========
 	pShader = new CGraphicShader;
 	pShader->CreateVertexShader(L"Shader\\std2d.fx", "VS_DamageSkin");
+	pShader->CreateGeometryShader(L"Shader\\std2d.fx", "GS_DamageSkin");
 	pShader->CreatePixelShader(L"Shader\\std2d.fx", "PS_DamageSkin");
-
-	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 	pShader->SetRSState(RS_TYPE::CULL_NONE);
 	pShader->SetBSState(BS_TYPE::ALPHABLEND);
-	pShader->SetDSState(DS_TYPE::NO_WRITE);
-
+	pShader->SetDSState(DS_TYPE::NO_TEST_NO_WRITE);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 	AddAsset(L"DamageSkinShader", pShader);
 
@@ -415,16 +410,40 @@ void CAssetMgr::CreateEngineGraphicShader()
 	// Fade
 	// ====
 	pShader = new CGraphicShader;
-
 	pShader->CreateVertexShader(L"Shader\\postprocess.fx", "VS_Post");
 	pShader->CreatePixelShader(L"Shader\\postprocess.fx", "PS_Fade");
-
 	pShader->SetRSState(RS_TYPE::CULL_NONE);                    
 	pShader->SetBSState(BS_TYPE::ALPHABLEND);                   
 	pShader->SetDSState(DS_TYPE::NO_TEST_NO_WRITE);             
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);      
-
 	AddAsset(L"FadeShader", pShader);
+
+	// ==
+	// UI
+	// ==
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\std2d.fx", "VS_Std2D");
+	pShader->CreatePixelShader(L"Shader\\std2d.fx", "PS_UI");
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	pShader->SetRSState(RS_TYPE::CULL_NONE);
+	pShader->SetBSState(BS_TYPE::ALPHABLEND);
+	pShader->SetDSState(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+	AddAsset(L"UIShader", pShader);
+
+
+	// ======
+	// Slider
+	// ======
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\std2d.fx", "VS_Std2D");
+	pShader->CreatePixelShader(L"Shader\\std2d.fx", "PS_Slider");
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	pShader->SetRSState(RS_TYPE::CULL_NONE);
+	pShader->SetBSState(BS_TYPE::ALPHABLEND);
+	pShader->SetDSState(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+	AddAsset(L"UISliderShader", pShader);
 }
 
 #include "CParticleTickCS.h"
@@ -526,6 +545,18 @@ void CAssetMgr::CreateEngineMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetName(L"FadeMtrl");
 	pMtrl->SetShader(FindAsset<CGraphicShader>(L"FadeShader"));
+	AddAsset<CMaterial>(pMtrl->GetName(), pMtrl);
+
+	// UI Mtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetName(L"UIMtrl");
+	pMtrl->SetShader(FindAsset<CGraphicShader>(L"UIShader"));
+	AddAsset<CMaterial>(pMtrl->GetName(), pMtrl);
+
+	// Slider Mtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetName(L"SliderMtrl");
+	pMtrl->SetShader(FindAsset<CGraphicShader>(L"UISliderShader"));
 	AddAsset<CMaterial>(pMtrl->GetName(), pMtrl);
 }
 

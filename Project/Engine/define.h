@@ -52,5 +52,6 @@ typedef void(CScript::* SCRIPT_DELEGATE_2)(DWORD_PTR, DWORD_PTR);
 
 #define FIND_ANIM(Key) CAssetMgr::GetInst()->FindAsset<CFlipbook>(Key)
 #define FIND_PREFAB(Key) CAssetMgr::GetInst()->FindAsset<CPrefab>(Key)
+#define FIND_MATERIAL(Key) CAssetMgr::GetInst()->FindAsset<CMaterial>(Key)
 
 #define X(EName) EName,

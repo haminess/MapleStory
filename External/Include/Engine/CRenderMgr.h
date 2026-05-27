@@ -80,7 +80,6 @@ public:
     CCamera* GetRenderCamera() { return m_RenderCam; }
     void SetRenderCamera(CCamera* _Cam) {  m_RenderCam = _Cam; }
 
-
     const vector<CCamera*>& GetCameraList() { return m_vecCam; }
     int GetRenderCamNum() { return m_CamNum; }
     void SetRenderCamNum(int _PriorityNum) { m_CamNum = _PriorityNum; }

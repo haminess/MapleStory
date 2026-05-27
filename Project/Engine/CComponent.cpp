@@ -18,8 +18,6 @@ void CComponent::SaveToLevel(FILE* _File)
 	CEntity::SaveToLevel(_File);
 
 	SaveComponent(_File);
-
-	//fwrite(&m_Initialized, sizeof(m_Initialized), 1, _File);
 }
 
 void CComponent::LoadFromLevel(FILE* _File)
@@ -27,8 +25,6 @@ void CComponent::LoadFromLevel(FILE* _File)
 	CEntity::LoadFromLevel(_File);
 
 	LoadComponent(_File);
-
-	//fread(&m_Initialized, sizeof(m_Initialized), 1, _File);
 }
 
 COMPONENT_TYPE CComponent::GetComponentType(const wstring& _StrType)

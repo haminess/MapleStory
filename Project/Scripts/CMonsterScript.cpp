@@ -36,30 +36,39 @@ void CMonsterScript::Hit(int _Power, int _Count, Ptr<CFlipbook> _HitEff, Vector2
 {
 	m_HitPower = _Power;
 	m_HitAnim = _HitEff;
+	m_HitCount = 0;
 
 	for (int i = 0; i < _Count; ++i)
 	{
 		CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CMonsterScript::HitTimer, 0.2f * i);
 	}
 
-	RigidBody2D()->AddImpulse(_Dir);
+	if(RigidBody2D())
+		RigidBody2D()->AddImpulse(_Dir);
 }
 
 void CMonsterScript::HitTimer()
 {
-	Damage(m_HitPower);
+	Damage(m_HitPower, m_HitCount);
+	++m_HitCount;
 
 	if (m_HitAnim != nullptr)
-		PlayHitAnim(m_HitAnim, Transform()->GetWorldPos(), 1);
+	{
+		Vector3 vHitPos = Transform()->GetWorldPos();
+		vHitPos.y = vHitPos.y - Transform()->GetWorldScale().y / 2.f + 70.f;
+
+		PlayHitAnim(m_HitAnim, vHitPos, 1);
+	}
 }
 
-void CMonsterScript::Damage(int _Power)
+void CMonsterScript::Damage(int _Power, int _Count)
 {
-	CLifeScript::Damage(_Power);
+	CLifeScript::Damage(_Power, _Count);
 
 	// 여기서 데미지스킨 출력***
 
-	StateMachine()->ChangeState(L"HitState");
+	if(StateMachine())
+		StateMachine()->ChangeState(L"HitState");
 }
 
 void CMonsterScript::Dead()
@@ -67,6 +76,9 @@ void CMonsterScript::Dead()
 	CLifeScript::Dead();
 
 	// 사망 애니메이션이 있는 경우 재생
+	if (!GetOwner()->StateMachine())
+		return;
+
 	CState* pCurState = GetOwner()->StateMachine()->GetCurrentState();
 	if (nullptr != pCurState)
 	{

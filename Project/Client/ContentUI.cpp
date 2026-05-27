@@ -272,6 +272,8 @@ ASSET_TYPE ContentUI::GetAssetType(const wstring& _Path)
 		return ASSET_TYPE::SPRITE;
 	if (".mtrl" == Ext)
 		return ASSET_TYPE::MATERIAL;
+	if (".font" == Ext)
+		return ASSET_TYPE::FONT;
 
 	return ASSET_TYPE::END;
 }

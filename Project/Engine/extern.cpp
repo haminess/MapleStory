@@ -17,7 +17,8 @@ extern const char* ASSET_TYPE_STRING[] =
 	"MATERIAL",
 	"GRAPHIC_SHADER",
 	"COMPUTE_SHADER",
-	"MTILE"
+	"MTILE",
+	"FONT"
 };
 
 extern const char* LAYER_INDEX_STRING[] =

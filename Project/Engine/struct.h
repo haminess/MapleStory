@@ -188,6 +188,7 @@ struct tDebugShapeInfo
 	bool		DepthTest;
 };
 
+class CFont;
 struct tTextInfo
 {
 	wstring		Text;
@@ -195,6 +196,8 @@ struct tTextInfo
 	float		FontSize;
 	UINT		Color;
 	float		Time;
+	CFont*		Font;
+	TEXT_ALIGN	Align;
 };
 
 

@@ -75,5 +75,7 @@ public:
     CCamera();
     CCamera(const CCamera& _Origin);
     ~CCamera();
+
+    friend class CRenderMgr;
 };
 

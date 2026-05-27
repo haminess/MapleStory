@@ -3,6 +3,7 @@
 
 // Asset
 // 공유해서 쓸 수 있는 자원
+class CAssetMgr;
 class CAsset :
     public CEntity
 {

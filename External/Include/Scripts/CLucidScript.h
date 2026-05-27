@@ -7,6 +7,7 @@ class CLucidLittleButterflyScript;
 class CLucidLittleButterflySpawnScript;
 class CLucidHornScript;
 class CMonsterScript;
+class CSliderUI;
 class CLucidScript :
     public CMonsterScript
 {
@@ -29,7 +30,9 @@ private:
     // little butterfly & horn
     CLucidLittleButterflySpawnScript* m_LittleButterfly;
 
-    
+
+    // UI
+    CSliderUI* m_HPSlider;
 
 
 public:
@@ -42,10 +45,31 @@ public:
 
     void CastNextPattern();
 
+    void CastLucidSkill(int _SkillNum);
+
+    void CastFairyDust() { CastLucidSkill(0); }
+    void CastSpawnDragon() { CastLucidSkill(1); }
+    void CastSpawnButterfly() { CastLucidSkill(2); }
+    void CastForcedTeleport() { CastLucidSkill(3); }
+    void CastExplosionPrison() { CastLucidSkill(4); }
+    void CastSpawnGolem() { CastLucidSkill(5); }
+    void CastSpawnToadstool() { CastLucidSkill(6); }
+    void End1Phase();
+
 public:
     virtual void Init() override;
     virtual void Begin() override;
     virtual void Tick() override;
+    virtual void Dead() override;
+
+    virtual void BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObject, CCollider2D* _OtherCollider)
+    {
+        int a = 0;
+    }
+    virtual void EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObject, CCollider2D* _OtherCollider)
+    {
+        int a = 0;
+    }
 
 public:
     CLONE(CLucidScript);

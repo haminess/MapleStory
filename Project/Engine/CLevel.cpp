@@ -16,7 +16,6 @@ CLevel::CLevel()
 
 CLevel::~CLevel()
 {
-	int a = 0;
 }
 
 void CLevel::Begin()

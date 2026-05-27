@@ -52,6 +52,8 @@ int CLevelSaveLoad::SaveGameObject(CGameObject* _Object, FILE* _File)
 {
 	// 오브젝트 이름
 	_Object->SaveToLevel(_File);
+	DrawDebugLogW(wstring(L"==================================="));
+	DrawDebugLogW(L"Save Object : " + _Object->GetName());
 
 	// 오브젝트 레이어 저장
 	int layer = _Object->GetLayerIdx();
@@ -71,6 +73,10 @@ int CLevelSaveLoad::SaveGameObject(CGameObject* _Object, FILE* _File)
 		// 컴포넌트 타입 저장
 		fwrite(&i, sizeof(UINT), 1, _File);
 
+		////////////////////////////////// DEBUG
+		string log = "- Save " + string(COMPONENT_TYPE_STRING[i]);
+		DrawDebugLogW(wstring(log.begin(), log.end()));
+
 		// 컴포넌트 데이터 저장
 		_Object->GetComponent((COMPONENT_TYPE)i)->SaveToLevel(_File);
 	}
@@ -89,9 +95,14 @@ int CLevelSaveLoad::SaveGameObject(CGameObject* _Object, FILE* _File)
 		wstring ScriptName = CScriptMgr::GetScriptName(vecScripts[i]);
 		SaveWString(ScriptName, _File);
 
+		////////////////////////////////// DEBUG
+		DrawDebugLogW(L"- Save "+ ScriptName);
+
 		// Script 가 저장해야할 데이터 저장
 		vecScripts[i]->SaveToLevel(_File);
 	}
+
+	DrawDebugLogW(L"Complete Save Object : " + _Object->GetName());
 
 	// 자식 오브젝트
 	const vector<CGameObject*>& vecChild = _Object->GetChild();
@@ -151,6 +162,8 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 
 	// 오브젝트 이름
 	pObject->LoadFromLevel(_File);
+	DrawDebugLogW(wstring(L"==============================="));
+	DrawDebugLogW(L"Load Object : " + pObject->GetName());
 
 	// 오브젝트 레이어 로드
 	int layer = 0;
@@ -187,6 +200,11 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 		if (ComponentType == (UINT)COMPONENT_TYPE::END)
 			break;
 
+
+		////////////////////////////////// DEBUG
+		string log = "- Load " + string(COMPONENT_TYPE_STRING[ComponentType]);
+		DrawDebugLogW(wstring(log.begin(), log.end()));
+
 		CComponent* pComponent = CreateComponent((COMPONENT_TYPE)ComponentType);
 
 		if (ComponentType == (UINT)COMPONENT_TYPE::TRANSFORM)
@@ -208,6 +226,10 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 		wstring ScriptName;
 		LoadWString(ScriptName, _File);
 
+
+		////////////////////////////////// DEBUG
+		DrawDebugLogW(L"- Load " + ScriptName);
+
 		// Script 이름으로 해당 스크립트 객체를 생성 후 GameObject 에 넣어준다.
 		CScript* pScript = CScriptMgr::GetScript(ScriptName);
 		if (pScript)
@@ -220,6 +242,8 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 		// ==> 저장 일부 손실될 수 있다.
 		// ==> 만일 스크립트 사라져 null이면 해당 줄 만큼 앞당겨져 계속 null로 읽힐 것.
 	}
+
+	DrawDebugLogW(L"Complete Load Object : " + pObject->GetName());
 
 	// 자식 오브젝트
 	size_t ChildCount = 0;

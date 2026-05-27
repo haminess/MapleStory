@@ -13,17 +13,19 @@
 
 #define FONT_RGBA(r, g, b, a) (((((BYTE)a << 24 ) | (BYTE)b << 16) | (BYTE)g << 8) | (BYTE)r)
 
-
+class CFont;
 class CFontMgr :
-    public singleton<CFontMgr>
+	public singleton<CFontMgr>
 {
-    SINGLE(CFontMgr);
+	SINGLE(CFontMgr);
 private:
-    IFW1Factory* m_FW1Factory;
-    IFW1FontWrapper* m_FontWrapper;
+	IFW1Factory* m_FW1Factory;
+	IFW1FontWrapper* m_DefaultFont;
 
 public:
-    void Init();
-    void DrawFont(const wchar_t* _pStr, float _fPosX, float _fPosY, float _fFontSize, UINT _Color);
+	void Init();
+	void DrawFont(const wchar_t* _pStr, float _fPosX, float _fPosY, float _fFontSize, UINT _Color, TEXT_ALIGN _Align = TEXT_ALIGN::LEFT, Ptr<CFont> _Font = nullptr);
+
+	friend class CFont;
 };
 

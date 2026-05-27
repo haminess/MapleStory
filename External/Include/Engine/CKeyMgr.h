@@ -45,15 +45,16 @@ struct tKeyInfo
 	bool		NextPressed;	// 다음 프레임에 무조건 트리거 될 지
 };
 
+class CCamera;
 class CKeyMgr
 	: public singleton<CKeyMgr>
 {
 public:
-	static Vector2 GetScreenToWorld(Vector2 _Screen);
-	static Vector2 GetWorldToScreen(Vector2 _World);
+	static Vector2 GetScreenToWorld(Vector2 _Screen, CCamera* _Cam = nullptr);
+	static Vector2 GetWorldToScreen(Vector2 _World, CCamera* _Cam = nullptr);
+	static Vector2 GetWorldToResolutionPos(Vector2 _World);
 
 	// 키 동기화 하기 위해 사용
-
 	SINGLE(CKeyMgr);
 
 private:

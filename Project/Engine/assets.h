@@ -11,3 +11,4 @@
 #include "CPrefab.h"
 #include "CSound.h"
 #include "MTile.h"
+#include "CFont.h"

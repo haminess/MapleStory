@@ -8,6 +8,8 @@
 #include "CSkillManager.h"
 #include "CCameraScript.h"
 #include "CLucidLittleButterflyScript.h"
+#include "CSliderUI.h"
+#include "CTextUI.h"
 
 #include "CHeroSlashBlastSkill.h"
 #include "CHeroWarLeapSkill.h"
@@ -25,8 +27,6 @@
 #include <Engine/CLevelMgr.h>
 #include <Engine/CRenderMgr.h>
 
-#include "Class/CSkill.h"
-
 
 CPlayerScript::CPlayerScript()
 	: CLifeScript((UINT)SCRIPT_TYPE::PLAYERSCRIPT)
@@ -38,6 +38,7 @@ CPlayerScript::CPlayerScript()
 	, m_fBlinkTime(1.f)
 	, m_fBlinkInterval(0.05f)
 	, m_bIsBlinking(false)
+	, m_AnimSpeed(5.f)
 {
 	AddScriptParam(tScriptParam{ SCRIPT_PARAM::FLOAT, "Player Speed", &m_PlayerSpeed });
 	AddScriptParam(tScriptParam{ SCRIPT_PARAM::TEXTURE, "Test Texture", &m_TargetTex });
@@ -81,7 +82,7 @@ void CPlayerScript::Jump()
 	static bool bDoubleJump = false;
 
 	// 아래 점프
-	if (KEY_PRESSED(KEY::DOWN) && KEY_TAP(KEY::ALT) && 
+	if (KEY_PRESSED(KEY::DOWN) && KEY_TAP(KEY::ALT) &&
 		GetOwner()->RigidBody2D()->IsGround())
 	{
 		CPlatformerScript* pPlatformer = (CPlatformerScript*)GetOwner()->GetScript<CPlatformerScript>();
@@ -175,150 +176,103 @@ void CPlayerScript::BeginAttack()
 	ActivateObject(m_Attack);
 
 	// 공격 정보에 따라 Offset, Scale 설정
-	printf("공격!");
 
 	// 종료 타이머 설정
-	printf("인보크 함수 호출");
 	Invoke(std::bind(&CPlayerScript::EndAttack, this), 1.0f, false);
 }
 
 
 void CPlayerScript::EndAttack()
 {
-	printf("공격 종료");
-
 	DeactivateObject(m_Attack);
-	GetOwner()->FlipbookPlayer()->Play(1, 3.f, true);
+	GetOwner()->FlipbookPlayer()->Play(1, m_AnimSpeed, true);
 }
 
 void CPlayerScript::Animation()
 {
-	// animation
-	bool bPlay = false;
-	int PlayNum = 0;
-
 	CFlipbookPlayer* pFP = GetOwner()->FlipbookPlayer();
 	if (!pFP)
 		return;
 
-	// 애니메이션 종료됐으면 Idle로 변경
-	if (pFP->IsLoop() == false && pFP->IsFinishedOnce())
-	{
-		bPlay = true;
+	CRigidBody2D* pRB = RigidBody2D();
+	if (!pRB)
+		return;
 
-		if (RigidBody2D()->GetVelocity().Length() > 0)
-			pFP->Play(2, 10.f, true);
-		else
-			pFP->Play(1, 10.f, true);
-	}
+	Ptr<CFlipbook> pCurFlipbook = pFP->GetCurFlipbook();
 
-	// 걷기
+	const bool bGround = pRB->IsGround();
+	const bool bMoving = pRB->GetVelocity().Length() > 0.f;
+	const bool bRope = IsRope();
+
+	// 방향 전환
 	if (KEY_TAP(KEY::LEFT))
-	{
 		Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
-	}
+
 	if (KEY_TAP(KEY::RIGHT))
-	{
 		Transform()->SetRelativeRotation(0.f, Radian(180.f), 0.f);
-	}
 
-	if (RigidBody2D()->IsGround())
+	// 공격 애니메이션 재생 중이면 끝날 때까지 다른 애니메이션으로 덮지 않음
+	if (pCurFlipbook == pFP->GetFlipbook(6) &&
+		!pFP->IsLoop() &&
+		!pFP->IsFinishedOnce())
 	{
-		// 땅이면 기본
-		if (pFP->GetCurFlipbook() == pFP->GetFlipbook(3))
-		{
-			if (KEY_PRESSED(KEY::LEFT))
-			{
-				Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
-				pFP->Play(2, 3.f, true);
-			}
-			else if (KEY_PRESSED(KEY::RIGHT))
-			{
-				Transform()->SetRelativeRotation(0.f, Radian(180.f), 0.f);
-				pFP->Play(2, 3.f, true);
-			}
-			else
-			{
-				pFP->Play(1, 3.f, true);
-			}
-		}
-
-		// 걷기
-		if (KEY_TAP(KEY::LEFT))
-		{
-			Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
-			pFP->Play(2, 3.f, true);
-		}
-		if (KEY_TAP(KEY::RIGHT))
-		{
-			Transform()->SetRelativeRotation(0.f, Radian(180.f), 0.f);
-			pFP->Play(2, 3.f, true);
-		}
-		// 걷기 종료
-		if (KEY_RELEASED(KEY::LEFT) && KEY_NONE(KEY::RIGHT) ||
-			KEY_RELEASED(KEY::RIGHT) && KEY_NONE(KEY::LEFT))
-			pFP->Play(1, 3.f, true);
-		// 눕기
-		if (KEY_TAP(KEY::DOWN))
-			pFP->Play(4, 3.f, true);
-		// 눕기 종료
-		if (KEY_RELEASED(KEY::DOWN))
-			pFP->Play(1, 3.f, true);
-		// 점프
-		if (KEY_TAP(KEY::SPACE))
-			pFP->Play(3, 3.f, true);
-		// 공격
-		if (KEY_TAP(KEY::CTRL))
-			pFP->Play(6, 3.f, false);
-	}
-
-	// 땅이 아니면 점프 애니메이션
-	else
-	{
-		if (pFP->GetCurFlipbook() != pFP->GetFlipbook(3))
-		{
-			pFP->Play(3, 3.f, true);
-		}
+		return;
 	}
 
 	// 줄타기
-	if (IsRope() && pFP->GetCurFlipbook()->GetKey() != L"RopeAnim")
+	if (bRope)
 	{
-		pFP->Play(5, 3.f, true);
-	}
-	// 줄타기 종료
-	if (!IsRope() && pFP->GetCurFlipbook()->GetKey() == L"RopeAnim")
-	{
-		pFP->Play(1, 3.f, true);
-	}
-	return;
+		if (pCurFlipbook != pFP->GetFlipbook(5))
+			pFP->Play(5, m_AnimSpeed, true);
 
-	if (bPlay)
+		return;
+	}
+
+	// 공격
+	if (KEY_TAP(KEY::CTRL))
 	{
-		switch (PlayNum)
-		{
-			case 0: // LinkWalkDown
-				pFP->Play(1, 3.f, true);
-				break;
-			case 1: // LenStand
-				pFP->Play(1, 3.f, true);
-				break;
-			case 2: // LenWalk
-				pFP->Play(2, 3.f, true);
-				break;
-			case 3: // LenJump
-				pFP->Play(3, 3.f, true);
-				break;
-			case 4: // LenProne
-				pFP->Play(4, 3.f, true);
-				break;
-			case 5: // LenRope
-				pFP->Play(5, 3.f, true);
-				break;
-			case 6: // LenSwing1
-				pFP->Play(6, 3.f, true);
-				break;
-		}
+		pFP->Play(6, m_AnimSpeed, false);
+		return;
+	}
+
+	// 공중 상태
+	if (!bGround)
+	{
+		if (pCurFlipbook != pFP->GetFlipbook(3))
+			pFP->Play(3, m_AnimSpeed, true);
+
+		return;
+	}
+
+	// 점프
+	if (KEY_TAP(KEY::SPACE) || KEY_TAP(KEY::ALT))
+	{
+		pFP->Play(3, m_AnimSpeed, true);
+		return;
+	}
+
+	// 눕기
+	if (KEY_PRESSED(KEY::DOWN))
+	{
+		if (pCurFlipbook != pFP->GetFlipbook(4))
+			pFP->Play(4, m_AnimSpeed, true);
+
+		return;
+	}
+
+	// 걷기
+	if (KEY_PRESSED(KEY::LEFT) || KEY_PRESSED(KEY::RIGHT))
+	{
+		if (pCurFlipbook != pFP->GetFlipbook(2))
+			pFP->Play(2, m_AnimSpeed, true);
+
+		return;
+	}
+
+	// 기본 대기
+	if (pCurFlipbook != pFP->GetFlipbook(1))
+	{
+		pFP->Play(1, m_AnimSpeed, true);
 	}
 }
 
@@ -374,7 +328,7 @@ void CPlayerScript::Init()
 	}
 
 
-	if(GetOwner()->FlipbookPlayer() == nullptr)
+	if (GetOwner()->FlipbookPlayer() == nullptr)
 		GetOwner()->AddComponent(new CFlipbookPlayer);
 	GetOwner()->FlipbookPlayer()->AddFlipbook(1, FIND_ANIM(L"Flipbook\\HeroStand.flip"));
 	GetOwner()->FlipbookPlayer()->AddFlipbook(2, FIND_ANIM(L"Flipbook\\HeroWalk.flip"));
@@ -401,7 +355,7 @@ void CPlayerScript::Begin()
 	m_Map = CLevelMgr::GetInst()->FindObjectByName(L"Map");
 
 	CGameObject* pObject = CLevelMgr::GetInst()->FindObjectByName(L"LevelMgr");
-	if(pObject) m_LevelScript = pObject->GetScript<CLevelScript>();
+	if (pObject) m_LevelScript = pObject->GetScript<CLevelScript>();
 
 	CSkillManager* pSM = GetOwner()->GetScript<CSkillManager>();
 	if (pSM)
@@ -418,6 +372,25 @@ void CPlayerScript::Begin()
 	}
 
 	MoveToPortal();
+
+	CLevelMgr* pLevel = CLevelMgr::GetInst();
+	CGameObject* pFind = nullptr;
+
+	pFind = pLevel->FindObjectByName(L"UI_PlayerHP");
+	if (pFind)
+		m_HPSlider = pFind->GetScript<CSliderUI>();
+
+	pFind = pLevel->FindObjectByName(L"Text_PlayerHP");
+	if (pFind)
+		m_HPText = pFind->GetScript<CTextUI>();
+
+	pFind = pLevel->FindObjectByName(L"UI_PlayerMP");
+	if (pFind)
+		m_MPSlider = pFind->GetScript<CSliderUI>();
+
+	pFind = pLevel->FindObjectByName(L"Text_PlayerMP");
+	if (pFind)
+		m_MPText = pFind->GetScript<CTextUI>();
 }
 
 #include "CLucidNightmareButterflyScript.h"
@@ -425,6 +398,7 @@ void CPlayerScript::Begin()
 #include "CLucidGolemScript.h"
 #include "CLucidToadstoolScript.h"
 #include "CHeroSwordOfBurningSoulScript.h"
+#include "CDamageSkinScript.h"
 #include <Engine/CKeyMgr.h>
 
 void CPlayerScript::Tick()
@@ -440,6 +414,22 @@ void CPlayerScript::Tick()
 		pObj->Transform()->SetWorldPos(Vector3(CKeyMgr::GetInst()->GetMouseWorldPos().x, CKeyMgr::GetInst()->GetMouseWorldPos().y, 0.f));
 
 		CreateObject(pObj, (int)LAYER_INDEX::MONSTER, true);
+	}
+	if (KEY_TAP(KEY::RBTN))
+	{
+		static Ptr<CPrefab> pPrefab = FIND_PREFAB(L"Prefab\\DamageSkin.pref");
+
+		CGameObject* pObj = pPrefab->Instantiate(); // new CGameObject;
+		pObj->Transform()->SetWorldPos(Vector3(CKeyMgr::GetInst()->GetMouseWorldPos().x, CKeyMgr::GetInst()->GetMouseWorldPos().y, 0.f));
+
+		CDamageSkinScript* pDamage = pObj->GetScript<CDamageSkinScript>();
+		if (pDamage)
+		{
+			static int cnt = 0;
+			pDamage->Play(cnt++, pObj->Transform()->GetWorldPos(), 2.f, 15.f);
+		}
+
+		CreateObject(pObj, (int)LAYER_INDEX::EFFECT, true);
 	}
 
 	if (KEY_PRESSED(KEY::CTRL))
@@ -505,6 +495,19 @@ void CPlayerScript::Tick()
 			MoveToPortal();
 			// Respawn();
 		}
+	}
+
+
+	// UI
+	if (m_HPSlider && m_HPText)
+	{
+		m_HPSlider->SetRatio((float)GetHP() / GetMaxHP());
+		m_HPText->SetText(std::to_wstring(GetHP()) + L" / " + std::to_wstring(GetMaxHP()));
+	}
+	if (m_MPSlider && m_MPText)
+	{
+		m_MPSlider->SetRatio((float)GetMP() / GetMaxMP());
+		m_MPText->SetText(std::to_wstring(GetMP()) + L" / " + std::to_wstring(GetMaxMP()));
 	}
 
 }

@@ -126,6 +126,6 @@ void CHeroRagingBlowSkill::HitMonster(DWORD_PTR _Col, DWORD_PTR _Other)
 		if (pMonster == nullptr)
 			return;
 
-		pMonster->Hit(10, 4, m_HitFlip[m_Step], GetKnockbackDir(pOther, pMy, 100.f));
+		pMonster->Hit(12345678, 4, m_HitFlip[m_Step], GetKnockbackDir(pOther, pMy, 100.f));
 	}
 }

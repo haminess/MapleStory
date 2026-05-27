@@ -133,14 +133,15 @@ void CameraUI::Render_Update()
 
         for (int i = 0; i < cams.size(); i++)
         {
-            if (nullptr != cams[i])
-            {
+            if (nullptr == cams[i])
+                camName = L"None";
+            else
                 camName = cams[i]->GetOwner()->GetName();
-                itemName = std::to_string(i) + " : " + string(camName.begin(), camName.end());
-                if (ImGui::Selectable(itemName.c_str(), (i == priority)))
-                {
-                    pCamera->SetPriority(i);
-                }
+
+            itemName = std::to_string(i) + " : " + string(camName.begin(), camName.end());
+            if (ImGui::Selectable(itemName.c_str(), (i == priority)))
+            {
+                pCamera->SetPriority(i);
             }
         }
         

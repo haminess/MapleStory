@@ -410,6 +410,22 @@ CLevel* TestLevel::CreateEmptyLevel()
 	pLevel->AddObject(0, pCam, true);
 
 
+	// UICamera
+	pCam = new CGameObject;
+	pCam->SetName(L"UICamera");
+	pCam->AddComponent(new CCamera);
+
+	pCam->Transform()->SetRelativePos(0.f, 0.f, -100.f);
+	pCam->Camera()->SetPriority(1);
+	pCam->Camera()->LayerCheckClear();
+	pCam->Camera()->LayerCheck((int)LAYER_INDEX::UI_DEBUG);
+	pCam->Camera()->LayerCheck((int)LAYER_INDEX::UI_SCREEN);
+	pCam->Camera()->LayerCheck((int)LAYER_INDEX::UI_WORLD);
+	pCam->Camera()->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
+
+	pLevel->AddObject(0, pCam, true);
+
+
 	// =================
 	// 광원 오브젝트 추가
 	// =================

@@ -80,9 +80,12 @@ CKeyMgr::~CKeyMgr()
 {
 
 }
-Vector2 CKeyMgr::GetScreenToWorld(Vector2 _Screen)
+Vector2 CKeyMgr::GetScreenToWorld(Vector2 _Screen, CCamera* _Cam)
 {
-	CCamera* pCam = CRenderMgr::GetInst()->GetRenderCamera();
+	CCamera* pCam = _Cam;
+	if (pCam == nullptr)
+		CRenderMgr::GetInst()->GetRenderCamera();
+
 	if (pCam && !CTaskMgr::GetInst()->IsLevelChanged())
 	{
 		Vector3 vCamPos = pCam->Transform()->GetWorldPos();
@@ -102,9 +105,10 @@ Vector2 CKeyMgr::GetScreenToWorld(Vector2 _Screen)
 	}
 }
 
-Vector2 CKeyMgr::GetWorldToScreen(Vector2 _World)
+Vector2 CKeyMgr::GetWorldToScreen(Vector2 _World, CCamera* _Cam)
 {
-	CCamera* pCam = CRenderMgr::GetInst()->GetRenderCamera();
+	CCamera* pCam = _Cam;
+
 	if (pCam && !CTaskMgr::GetInst()->IsLevelChanged())
 	{
 		Vector3 vCamPos = pCam->Transform()->GetWorldPos();
@@ -130,6 +134,18 @@ Vector2 CKeyMgr::GetWorldToScreen(Vector2 _World)
 		);
 	}
 	return Vector2(0.f, 0.f);
+}
+
+Vector2 CKeyMgr::GetWorldToResolutionPos(Vector2 _World)
+{
+	// 카메라의 scale과 크기 계산
+	float width = CDevice::GetInst()->GetRenderResolution().x;
+	float height = CDevice::GetInst()->GetRenderResolution().y;
+
+	// 카메라의 좌상단 좌표 계산
+	Vector2 vScreenLT = Vector2(- width / 2.f, height / 2.f);
+
+	return Vector2(_World.x - vScreenLT.x, vScreenLT.y - _World.y);
 }
 
 void CKeyMgr::Init()

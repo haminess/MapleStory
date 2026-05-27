@@ -24,6 +24,7 @@ enum ASSET_TYPE
 	GRAPHIC_SHADER,
 	COMPUTE_SHADER,
 	MTILE,
+	FONT,
 	END,
 };
 extern const char* ASSET_TYPE_STRING[];
@@ -159,6 +160,7 @@ enum class SHADER_DOMAIN
 	DOMAIN_MASK,			// 불투명 or 투명
 	DOMAIN_TRANSPARENT,		// 반투명 + 투명
 	DOMAIN_PARTICLE,		// 반투명 + 투명, 파티클 전용
+	DOMAIN_UI,				// UI
 	DOMAIN_POSTPROCESS,		// 후처리
 
 	DOMAIN_NONE,			// 미정의
@@ -310,4 +312,12 @@ enum class PARTICLE_MODULE
 	RENDER,
 
 	END,
+};
+
+
+enum class TEXT_ALIGN
+{
+	LEFT,
+	CENTER,
+	RIGHT
 };

@@ -4,6 +4,8 @@
 
 class CSkillScript;
 class CLevelScript;
+class CSliderUI;
+class CTextUI;
 class CPlayerScript :
 	public CLifeScript
 {
@@ -34,8 +36,15 @@ private:
 	bool    m_bIsBlinking;      // ±ôºýÀÓ »óÅÂ
 
 	CGameObject* m_PlayerModel; // ÇÃ·¹ÀÌ¾î ¸ðµ¨ Ä³½Ì
+	float m_AnimSpeed;
 
 	bool m_IsRope;
+
+	// UI
+	CSliderUI* m_HPSlider;
+	CTextUI* m_HPText;
+	CSliderUI* m_MPSlider;
+	CTextUI* m_MPText;
 
 public:
 	bool IsRope() { return m_IsRope; }
@@ -58,7 +67,6 @@ public:
 	void MoveToPortal(int _PortalID = -1);
 
 private:
-	void TestFunc() { DEBUG_LOG("¹öÆ° Å¬¸¯!"); }
 	void ProjectileTestFunc(DWORD_PTR _Collider, DWORD_PTR _OtherCollider);
 
 public:

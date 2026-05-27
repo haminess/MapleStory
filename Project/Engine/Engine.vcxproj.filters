@@ -166,6 +166,9 @@
     <Filter Include="07. Component\RenderComponent\04. SpriteRenderer">
       <UniqueIdentifier>{f734a006-c51f-4904-8179-e334a3ccc983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08. Asset\10. Font">
+      <UniqueIdentifier>{5ef1d88e-dab2-461e-b869-3a0e6a4e6677}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -348,6 +351,9 @@
     <ClInclude Include="MTileMap.h">
       <Filter>07. Component\RenderComponent\02. TileMap\MTileMap</Filter>
     </ClInclude>
+    <ClInclude Include="CFont.h">
+      <Filter>08. Asset\10. Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -499,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="MTileMap.cpp">
       <Filter>07. Component\RenderComponent\02. TileMap\MTileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CFont.cpp">
+      <Filter>08. Asset\10. Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

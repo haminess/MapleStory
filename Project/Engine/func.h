@@ -70,6 +70,8 @@ void SaveAssetRef(Ptr<T> _Asset, FILE* _File)
 	}
 }
 
+class CAssetMgr;
+
 template<typename T>
 void LoadAssetRef(Ptr<T>& _Asset, FILE* _File)
 {

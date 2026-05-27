@@ -110,7 +110,14 @@ void ComponentUI::ComponentContext()
 		}
 		if (ImGui::Selectable("Delete Component"))
 		{
-            GetTargetObject()->DeleteComponent(m_Type);
+            if (m_Type == COMPONENT_TYPE::SCRIPT)
+            {
+                //GetTargetObject()->DeleteScript();
+            }
+            else
+            {
+                GetTargetObject()->DeleteComponent(m_Type);
+            }
             CImGuiMgr::GetInst()->GetInspector()->RenewGameObject();
 		}
 

@@ -8,6 +8,7 @@
 #include "CBellumIdleState.h"
 #include "CBellumScript.h"
 #include "CBowSkill.h"
+#include "CButtonUI.h"
 #include "CCameraScript.h"
 #include "CDamageSkinScript.h"
 #include "CDieState.h"
@@ -74,10 +75,13 @@
 #include "CSkillManager.h"
 #include "CSkillScript.h"
 #include "CSkillState.h"
+#include "CSliderUI.h"
 #include "CSpawnerScript.h"
 #include "CSpawnState.h"
 #include "CStrikeSkill.h"
+#include "CTextUI.h"
 #include "CTraceState.h"
+#include "CUIScript.h"
 #include "CWallScript.h"
 #include "CWindWalkSkill.h"
 
@@ -90,6 +94,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CBellumIdleState");
 	_vec.push_back(L"CBellumScript");
 	_vec.push_back(L"CBowSkill");
+	_vec.push_back(L"CButtonUI");
 	_vec.push_back(L"CCameraScript");
 	_vec.push_back(L"CDamageSkinScript");
 	_vec.push_back(L"CDieState");
@@ -156,10 +161,13 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CSkillManager");
 	_vec.push_back(L"CSkillScript");
 	_vec.push_back(L"CSkillState");
+	_vec.push_back(L"CSliderUI");
 	_vec.push_back(L"CSpawnerScript");
 	_vec.push_back(L"CSpawnState");
 	_vec.push_back(L"CStrikeSkill");
+	_vec.push_back(L"CTextUI");
 	_vec.push_back(L"CTraceState");
+	_vec.push_back(L"CUIScript");
 	_vec.push_back(L"CWallScript");
 	_vec.push_back(L"CWindWalkSkill");
 }
@@ -180,6 +188,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CBellumScript;
 	if (L"CBowSkill" == _strScriptName)
 		return new CBowSkill;
+	if (L"CButtonUI" == _strScriptName)
+		return new CButtonUI;
 	if (L"CCameraScript" == _strScriptName)
 		return new CCameraScript;
 	if (L"CDamageSkinScript" == _strScriptName)
@@ -312,14 +322,20 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CSkillScript;
 	if (L"CSkillState" == _strScriptName)
 		return new CSkillState;
+	if (L"CSliderUI" == _strScriptName)
+		return new CSliderUI;
 	if (L"CSpawnerScript" == _strScriptName)
 		return new CSpawnerScript;
 	if (L"CSpawnState" == _strScriptName)
 		return new CSpawnState;
 	if (L"CStrikeSkill" == _strScriptName)
 		return new CStrikeSkill;
+	if (L"CTextUI" == _strScriptName)
+		return new CTextUI;
 	if (L"CTraceState" == _strScriptName)
 		return new CTraceState;
+	if (L"CUIScript" == _strScriptName)
+		return new CUIScript;
 	if (L"CWallScript" == _strScriptName)
 		return new CWallScript;
 	if (L"CWindWalkSkill" == _strScriptName)
@@ -351,6 +367,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::BOWSKILL:
 		return new CBowSkill;
+		break;
+	case (UINT)SCRIPT_TYPE::BUTTONUI:
+		return new CButtonUI;
 		break;
 	case (UINT)SCRIPT_TYPE::CAMERASCRIPT:
 		return new CCameraScript;
@@ -550,6 +569,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::SKILLSTATE:
 		return new CSkillState;
 		break;
+	case (UINT)SCRIPT_TYPE::SLIDERUI:
+		return new CSliderUI;
+		break;
 	case (UINT)SCRIPT_TYPE::SPAWNERSCRIPT:
 		return new CSpawnerScript;
 		break;
@@ -559,8 +581,14 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::STRIKESKILL:
 		return new CStrikeSkill;
 		break;
+	case (UINT)SCRIPT_TYPE::TEXTUI:
+		return new CTextUI;
+		break;
 	case (UINT)SCRIPT_TYPE::TRACESTATE:
 		return new CTraceState;
+		break;
+	case (UINT)SCRIPT_TYPE::UISCRIPT:
+		return new CUIScript;
 		break;
 	case (UINT)SCRIPT_TYPE::WALLSCRIPT:
 		return new CWallScript;
@@ -602,6 +630,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::BOWSKILL:
 		return L"CBowSkill";
+		break;
+
+	case SCRIPT_TYPE::BUTTONUI:
+		return L"CButtonUI";
 		break;
 
 	case SCRIPT_TYPE::CAMERASCRIPT:
@@ -868,6 +900,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CSkillState";
 		break;
 
+	case SCRIPT_TYPE::SLIDERUI:
+		return L"CSliderUI";
+		break;
+
 	case SCRIPT_TYPE::SPAWNERSCRIPT:
 		return L"CSpawnerScript";
 		break;
@@ -880,8 +916,16 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CStrikeSkill";
 		break;
 
+	case SCRIPT_TYPE::TEXTUI:
+		return L"CTextUI";
+		break;
+
 	case SCRIPT_TYPE::TRACESTATE:
 		return L"CTraceState";
+		break;
+
+	case SCRIPT_TYPE::UISCRIPT:
+		return L"CUIScript";
 		break;
 
 	case SCRIPT_TYPE::WALLSCRIPT:

@@ -210,7 +210,7 @@ void Inspector::Render_Update()
 		ImGui::Text("Layer");
 		ImGui::SameLine(100);
 		int LayerNum = m_TargetObject->GetLayerIdx();
-		string LayerName = "Layer " + std::to_string(LayerNum);
+		string LayerName = std::to_string(LayerNum) + " : " + LAYER_INDEX_STRING[LayerNum];
 
 		if (ImGui::BeginCombo("##LayerIdx", LayerName.c_str(), 0))
 		{
@@ -297,6 +297,7 @@ void Inspector::CreateComponentUI()
 #include "MaterialUI.h"
 #include "GraphicShaderUI.h"
 #include "ComputeShaderUI.h"
+#include "FontUI.h"
 
 void Inspector::CreateAssetUI()
 {
@@ -311,6 +312,7 @@ void Inspector::CreateAssetUI()
 	m_arrAssetUI[(UINT)ASSET_TYPE::GRAPHIC_SHADER] = new GraphicShaderUI;
 	m_arrAssetUI[(UINT)ASSET_TYPE::COMPUTE_SHADER] = new ComputeShaderUI;
 	m_arrAssetUI[(UINT)ASSET_TYPE::MTILE] = new TextureUI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::FONT] = new FontUI;
 
 	for (UINT i = 0; i < (UINT)ASSET_TYPE::END; ++i)
 	{

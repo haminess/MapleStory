@@ -38,7 +38,7 @@ void PrefabUI::Render_Update()
 		Vector2 vPos = CKeyMgr::GetInst()->GetMouseWorldPos();
 		m_NewObject->Transform()->SetWorldPos(Vector3(vPos.x, vPos.y, 0.f));
 
-		if (KEY_RELEASED(KEY::LBTN))
+		if (KEY_RELEASED(KEY::LBTN) || !m_NewObject->IsValid())
 			m_NewObject = nullptr;
 	}
 

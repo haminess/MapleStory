@@ -181,6 +181,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CBellumIdleState.h" />
     <ClInclude Include="CBellumScript.h" />
     <ClInclude Include="CBowSkill.h" />
+    <ClInclude Include="CButtonUI.h" />
     <ClInclude Include="CCameraScript.h" />
     <ClInclude Include="CDamageSkinScript.h" />
     <ClInclude Include="CDieState.h" />
@@ -198,7 +199,6 @@ call CodeGen.exe</Command>
     <ClInclude Include="CHeroWarLeapSkill.h" />
     <ClInclude Include="CHitState.h" />
     <ClInclude Include="CIdleState.h" />
-    <ClInclude Include="Class\CSkill.h" />
     <ClInclude Include="CLevelScript.h" />
     <ClInclude Include="CLifeScript.h" />
     <ClInclude Include="CLinePlatform.h" />
@@ -249,10 +249,13 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSkillScript.h" />
     <ClInclude Include="CSkillState.h" />
     <ClInclude Include="CHeroSlashBlastSkill.h" />
+    <ClInclude Include="CSliderUI.h" />
     <ClInclude Include="CSpawnerScript.h" />
     <ClInclude Include="CSpawnState.h" />
     <ClInclude Include="CStrikeSkill.h" />
+    <ClInclude Include="CTextUI.h" />
     <ClInclude Include="CTraceState.h" />
+    <ClInclude Include="CUIScript.h" />
     <ClInclude Include="CWallScript.h" />
     <ClInclude Include="CWindWalkSkill.h" />
     <ClInclude Include="framework.h" />
@@ -267,6 +270,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CBellumIdleState.cpp" />
     <ClCompile Include="CBellumScript.cpp" />
     <ClCompile Include="CBowSkill.cpp" />
+    <ClCompile Include="CButtonUI.cpp" />
     <ClCompile Include="CCameraScript.cpp" />
     <ClCompile Include="CDamageSkinScript.cpp" />
     <ClCompile Include="CDieState.cpp" />
@@ -280,7 +284,6 @@ call CodeGen.exe</Command>
     <ClCompile Include="CHeroWarLeapSkill.cpp" />
     <ClCompile Include="CHitState.cpp" />
     <ClCompile Include="CIdleState.cpp" />
-    <ClCompile Include="Class\CSkill.cpp" />
     <ClCompile Include="CLevelScript.cpp" />
     <ClCompile Include="CLifeScript.cpp" />
     <ClCompile Include="CLinePlatform.cpp" />
@@ -318,10 +321,13 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSkillScript.cpp" />
     <ClCompile Include="CSkillState.cpp" />
     <ClCompile Include="CHeroSlashBlastSkill.cpp" />
+    <ClCompile Include="CSliderUI.cpp" />
     <ClCompile Include="CSpawnerScript.cpp" />
     <ClCompile Include="CSpawnState.cpp" />
     <ClCompile Include="CStrikeSkill.cpp" />
+    <ClCompile Include="CTextUI.cpp" />
     <ClCompile Include="CTraceState.cpp" />
+    <ClCompile Include="CUIScript.cpp" />
     <ClCompile Include="CWallScript.cpp" />
     <ClCompile Include="CWindWalkSkill.cpp" />
     <ClCompile Include="func.cpp" />

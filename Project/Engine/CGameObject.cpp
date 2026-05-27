@@ -6,6 +6,7 @@
 #include "CScript.h"
 #include "CRenderComponent.h"
 #include "CLevelMgr.h"
+#include "CRenderMgr.h"
 #include "CTaskMgr.h"
 #include "CLayer.h"
 #include "CLevel.h"
@@ -121,6 +122,9 @@ void CGameObject::Tick()
 
 void CGameObject::FinalTick()
 {
+	// Level 등록
+	CLevelMgr::GetInst()->RegisterObject(this);
+
 	if (!m_Active)
 		return;
 
@@ -131,6 +135,7 @@ void CGameObject::FinalTick()
 
 		m_arrCom[i]->FinalTick();
 	}
+
 
 	// 자식만 죽을 경우 따로 Destroy
 	vector<CGameObject*>::iterator iter = m_vecChild.begin();
@@ -150,8 +155,6 @@ void CGameObject::FinalTick()
 	}
 
 
-	// Level 등록
-	CLevelMgr::GetInst()->RegisterObject(this);
 }
 
 void CGameObject::Destroy()

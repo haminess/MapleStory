@@ -26,6 +26,7 @@ private:
 
     int             m_HitPower;
     Ptr<CFlipbook>  m_HitAnim;
+    int             m_HitCount;
 
 public:    
     void AddFlipbook(MON_ANIM _AnimType, Ptr<CFlipbook> _Flipbook) { m_Flipbook[(UINT)_AnimType] = _Flipbook; }
@@ -36,7 +37,7 @@ public:
 
 
 public:
-    virtual void Damage(int _Power) override;
+    virtual void Damage(int _Power, int _Count = 0) override;
     virtual void Dead() override;
 
 public:

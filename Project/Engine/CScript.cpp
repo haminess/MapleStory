@@ -10,8 +10,8 @@ CScript::CScript(UINT _ScriptType)
 CScript::CScript(const CScript& _Other)
 	: CComponent(COMPONENT_TYPE::SCRIPT)
 	, m_ScriptType(_Other.m_ScriptType)
-	, m_ScriptName(_Other.m_ScriptName)
-	, m_vecMeta(_Other.m_vecMeta)
+	//, m_ScriptName(_Other.m_ScriptName)
+	//, m_vecMeta(_Other.m_vecMeta)
 	, m_vecScriptParam(_Other.m_vecScriptParam)
 {
 	ClearScriptParam();

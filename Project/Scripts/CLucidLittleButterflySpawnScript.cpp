@@ -100,13 +100,13 @@ void CLucidLittleButterflySpawnScript::Begin()
 
 	CGameObject* pHorn = new CGameObject;
 	pHorn->AddComponent(m_Horn[0]);
-	pHorn->Transform()->SetRelativePos(-700.f, -172.f, 0.f);
+	pHorn->Transform()->SetRelativePos(-700.f, -152.f, 0.f);
 	pHorn->Transform()->SetRelativeRotation(0.f, Radian(180.f), 0.f);
 	CreateObject(pHorn, (int)LAYER_INDEX::MONSTER_OBJECT, false);
 
 	pHorn = new CGameObject;
 	pHorn->AddComponent(m_Horn[1]);
-	pHorn->Transform()->SetRelativePos(700.f, -172.f, 0.f);
+	pHorn->Transform()->SetRelativePos(700.f, -152.f, 0.f);
 	CreateObject(pHorn, (int)LAYER_INDEX::MONSTER_OBJECT, false);
 }
 

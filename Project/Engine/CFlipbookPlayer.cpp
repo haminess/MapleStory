@@ -123,6 +123,7 @@ void CFlipbookPlayer::Play(int _Idx, float _FPS, bool _Repeat)
 			GetOwner()->Transform()->SetRelativeScale(vecSize.x, vecSize.y, 1.f);
 	}
 }
+
 void CFlipbookPlayer::PlayOnce(Ptr<CFlipbook> _Flipbook, float _FPS)
 {
 	m_CurFlipbook = _Flipbook;

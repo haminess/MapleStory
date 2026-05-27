@@ -98,10 +98,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // Enable run-time memory check for debug builds.
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtMemDumpAllObjectsSince(0);
+    _CrtMemDumpAllObjectsSince(0);
 
     // 메모리 누수 체크 중단점 설정
-    //_CrtSetBreakAlloc(572769); // 실제 문제 발생 번호로 수정 필요
+    //_CrtSetBreakAlloc(6761); // 실제 문제 발생 번호로 수정 필요
 #endif
 
 

@@ -130,6 +130,8 @@ void CCamera::LayerCheck(int _LayerIdx)
 void CCamera::SortObject()
 {
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurrentLevel();
+	if (!pCurLevel)
+		return;
 
 	for (UINT i = 0; i < MAX_LAYER; ++i)
 	{
@@ -233,6 +235,6 @@ void CCamera::Render()
 
 void CCamera::SetPriority(int _Priority)
 {
-	//CRenderMgr::GetInst()->RegisterCamera(this, _Priority);
+	CRenderMgr::GetInst()->RegisterCamera(this, _Priority);
 	m_Priority = _Priority;
 }

@@ -13,6 +13,8 @@
 #include "CLucidToadstoolScript.h"
 #include "CLucidHornScript.h"
 
+#include "CSliderUI.h"
+
 #include <Engine/CRenderMgr.h>
 #include <Engine/CTaskMgr.h>
 
@@ -20,6 +22,14 @@ CLucidScript::CLucidScript()
 	: CMonsterScript(SCRIPT_TYPE::LUCIDSCRIPT)
 	, m_TimerID(0)
 {
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "FairyDust", this, (SCRIPT_DELEGATE)&CLucidScript::CastFairyDust});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "SpawnDragon", this, (SCRIPT_DELEGATE)&CLucidScript::CastSpawnDragon});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "SpawnButterfly", this, (SCRIPT_DELEGATE)&CLucidScript::CastSpawnButterfly});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "ForcedTeleport", this, (SCRIPT_DELEGATE)&CLucidScript::CastForcedTeleport});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "ExplosionPrison", this, (SCRIPT_DELEGATE)&CLucidScript::CastExplosionPrison});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "SpawnGolem", this, (SCRIPT_DELEGATE)&CLucidScript::CastSpawnGolem});
+	AddScriptParam({SCRIPT_PARAM::FUNCTION, "SpawnToadstool", this, (SCRIPT_DELEGATE)&CLucidScript::CastSpawnToadstool});
+
 }
 
 CLucidScript::CLucidScript(const CLucidScript& _Other)
@@ -107,6 +117,24 @@ void CLucidScript::SpawnToadstool()
 	}
 }
 
+void CLucidScript::End1Phase()
+{
+	CGameObject* pDelete;
+	
+	pDelete = CLevelMgr::GetInst()->FindObjectByName(L"Lucid");
+	if (pDelete)
+		DestroyObject(pDelete);
+
+	pDelete = CLevelMgr::GetInst()->FindObjectByName(L"FlowerExplosion");
+	if (pDelete)
+		DestroyObject(pDelete);
+
+	pDelete = CLevelMgr::GetInst()->FindObjectByName(L"Butterfly Spawner");
+	if (pDelete)
+		DestroyObject(pDelete);
+	
+}
+
 void CLucidScript::Init()
 {
 	GetOwner()->SetName(L"Lucid");
@@ -141,7 +169,7 @@ void CLucidScript::Begin()
 	m_vecSkill[2]->BindDelegate(this, (SCRIPT_DELEGATE)&CLucidScript::SpawnNightmareButterfly);
 
 	m_vecSkill.push_back(new CSkillScript);					// forced teleport
-	m_vecSkill[3]->SetCoolTime(5.f);	
+	m_vecSkill[3]->SetCoolTime(5.f);
 	m_vecSkill[3]->BindDelegate(this, (SCRIPT_DELEGATE)&CLucidScript::TeleportPlayer);
 	
 	m_vecSkill.push_back(new CLucidExplosionPrisonSkill);	// prison
@@ -171,7 +199,13 @@ void CLucidScript::Begin()
 	CreateObject(pObj, (int)LAYER_INDEX::DEFAULT, false);
 
 	// 5초마다 패턴
-	UINT timer_id = CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CLucidScript::CastNextPattern, 5.f, true);
+	//m_TimerID = CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CLucidScript::CastNextPattern, 5.f, true);
+
+
+	// UI
+	CGameObject* pFind = CLevelMgr::GetInst()->FindObjectByName(L"UI_LucidHP");
+	if (pFind)
+		m_HPSlider = pFind->GetScript<CSliderUI>();
 }
 
 void CLucidScript::Tick()
@@ -181,17 +215,32 @@ void CLucidScript::Tick()
 		FlipbookPlayer()->Play(0, 10.f, true);
 	}
 
-	//// 5초마다 패턴
-	//m_PatternDelay += DT;
-	//if (m_PatternDelay > 5.f)
-	//{
-	//	int rand = RandomRange(0, m_vecSkill.size() - 1);
-	//	if (m_vecSkill[rand]->IsCooltimeFinished())
-	//	{
-	//		m_vecSkill[rand]->Use();
-	//		m_PatternDelay -= 5.f;
-	//	}
-	//}
+	if (KEY_TAP(KEY::P))
+	{
+		if (m_TimerID == 0)
+		{
+			m_TimerID = CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CLucidScript::CastNextPattern, 5.f, true);
+		}
+		else
+		{
+			CTaskMgr::GetInst()->StopTimer(m_TimerID);
+			m_TimerID = 0;
+		}
+	}
+
+	// UI
+	if (m_HPSlider)
+		m_HPSlider->SetRatio((float)GetHP() / GetMaxHP());
+}
+
+void CLucidScript::Dead()
+{
+	CLifeScript::Dead();
+
+	FlipbookPlayer()->Play(6, 10.f, false);
+
+	float duration = FlipbookPlayer()->GetFlipbook(6)->GetMaxSprite() / 10.f;
+	CTaskMgr::GetInst()->SetTimer(this, (SCRIPT_DELEGATE)&CLucidScript::End1Phase, duration, false);
 }
 
 
@@ -203,6 +252,13 @@ void CLucidScript::CastNextPattern()
 		m_vecSkill[rand]->Use();
 		m_PatternDelay -= 5.f;
 	}
+}
+
+void CLucidScript::CastLucidSkill(int _SkillNum)
+{
+	if (m_vecSkill[_SkillNum]->IsCooltimeFinished() &&
+		_SkillNum >= 0 && _SkillNum < m_vecSkill.size())
+		m_vecSkill[_SkillNum]->Use();
 }
 
 

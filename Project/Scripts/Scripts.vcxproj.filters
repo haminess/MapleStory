@@ -85,6 +85,9 @@
     <Filter Include="03. Scripts\Skill\Skills\Hero\State">
       <UniqueIdentifier>{aed1b114-e242-48f7-9840-e120cb696a2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scripts\UI">
+      <UniqueIdentifier>{b3cb4682-5b9f-4801-ae73-dd4de7cf90a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -173,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="CLevelScript.h">
       <Filter>03. Scripts\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Class\CSkill.h">
-      <Filter>02. Class</Filter>
     </ClInclude>
     <ClInclude Include="CMultiPlayerScript.h">
       <Filter>03. Scripts</Filter>
@@ -339,6 +339,18 @@
     <ClInclude Include="CHeroSOBSState_Die.h">
       <Filter>03. Scripts\Skill\Skills\Hero\State</Filter>
     </ClInclude>
+    <ClInclude Include="CUIScript.h">
+      <Filter>03. Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonUI.h">
+      <Filter>03. Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CSliderUI.h">
+      <Filter>03. Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextUI.h">
+      <Filter>03. Scripts\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -424,9 +436,6 @@
     </ClCompile>
     <ClCompile Include="CLevelScript.cpp">
       <Filter>03. Scripts\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Class\CSkill.cpp">
-      <Filter>02. Class</Filter>
     </ClCompile>
     <ClCompile Include="CMultiPlayerScript.cpp">
       <Filter>03. Scripts</Filter>
@@ -538,6 +547,18 @@
     </ClCompile>
     <ClCompile Include="CHeroSwordOfBurningSoulScript.cpp">
       <Filter>03. Scripts\Skill\Skills\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIScript.cpp">
+      <Filter>03. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CButtonUI.cpp">
+      <Filter>03. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CSliderUI.cpp">
+      <Filter>03. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextUI.cpp">
+      <Filter>03. Scripts\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

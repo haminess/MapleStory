@@ -169,6 +169,7 @@
     <ClInclude Include="EditorUI.h" />
     <ClInclude Include="FlipbookPlayerUI.h" />
     <ClInclude Include="FlipbookUI.h" />
+    <ClInclude Include="FontUI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="GraphicShaderUI.h" />
@@ -239,6 +240,7 @@
     <ClCompile Include="EditorUI.cpp" />
     <ClCompile Include="FlipbookPlayerUI.cpp" />
     <ClCompile Include="FlipbookUI.cpp" />
+    <ClCompile Include="FontUI.cpp" />
     <ClCompile Include="func_ui.cpp" />
     <ClInclude Include="func_ui.h" />
     <ClCompile Include="GraphicShaderUI.cpp" />

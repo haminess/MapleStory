@@ -9,10 +9,14 @@ private:
     int m_HP;      // 현재 체력
     int m_Power;    // 공격력
     int m_MaxHP;
+    int m_MP;
+    int m_MaxMP;
+
+    bool m_IsDead;
 
 public:
     // 기존 함수들
-    virtual void Damage(int _Power);
+    virtual void Damage(int _Power, int _Count = 0);
     virtual void DamageByPercent(float _Ratio);
     virtual void Dead();
 
@@ -20,9 +24,16 @@ public:
     int GetHP() const { return m_HP; }              
     int GetMaxHP() const { return m_MaxHP; }              
     void SetMaxHP(float _MaxHP) { m_MaxHP = _MaxHP; }
+
+    int GetMP() const { return m_MP; }              
+    int GetMaxMP() const { return m_MaxMP; }              
+    void SetMaxMP(float _MaxMP) { m_MaxMP = _MaxMP; }
+    
     void SetPower(float _Power) { m_Power = _Power; }
     int GetPower() const { return m_Power; }
-    void Heal(float _Heal) { m_HP += _Heal; }
+    void Heal(float _Heal) { m_HP = min(_Heal, (float)m_MaxHP); }
+
+    int IsLifeDead() const { return m_IsDead; }
 
 public:
     virtual void Tick() override {}

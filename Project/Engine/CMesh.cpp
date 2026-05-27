@@ -89,7 +89,7 @@ int CMesh::Create(Vertex* _Vtx, UINT _VtxCount, UINT* _pIdx, UINT _IdxCount)
 
 	// 3. Index Buffer 생성
 	// 겹치는 정점 최적화하기 위해 사용
-	m_IBDesc.ByteWidth = sizeof(Vertex) * _IdxCount;
+	m_IBDesc.ByteWidth = sizeof(UINT) * _IdxCount;
 	m_IBDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	m_IBDesc.CPUAccessFlags = 0;
 	m_IBDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -99,4 +99,6 @@ int CMesh::Create(Vertex* _Vtx, UINT _VtxCount, UINT* _pIdx, UINT _IdxCount)
 	{
 		return E_FAIL;
 	}
+
+	return S_OK;
 }
